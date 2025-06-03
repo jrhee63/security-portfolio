@@ -30,10 +30,10 @@ Some basic commands I used to validate connectivity:
 - `nmcli dev show`
 ---
 **Static IP assignment on Rocky**  
-![ip a output](../screenshots/vm-setup/ip-a-static.png)
+![ip a output](./screenshots/vm-setup/ip-a-static.png)
 
 **Ping from Rocky to Nessus**  
-![ping test](../screenshots/vm-setup/ping-test.png)
+![ping test](./screenshots/vm-setup/ping-test.png)
 
 ---
 
@@ -73,7 +73,7 @@ trust list | grep "CACI"
 ```
 
 **Screenshot – CA verification using trust list**  
-![trust list output](../screenshots/vm-setup/trustlistCA.png)
+![trust list output](./screenshots/vm-setup/trustlistCA.png)
 
 After importing, I could securely access internal tools and dashboards inside both **Firefox** and **Chrome**.
 
