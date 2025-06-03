@@ -38,11 +38,12 @@ All major documentation lives in [`lab-notes/`](./lab-notes/):
 ---
 
 ## Internship Log
-[Check out what I did week by week →](./internship-log.md)
+[`Check out what I did week by week →`](./internship-log.md)
 
 ---
 
-## Visual examples from the project, located in the [`screenshots/`](./screenshots/) folder:
+## Screenshots
+Visual examples from the project, located in the [`screenshots/`](./screenshots/) folder:
 
 - vm-setup/ – network settings, IP assignments, trust anchor output
 - system-hardening/ - Bash script samples. OpenSCAP compliance scan results, firewalld results
