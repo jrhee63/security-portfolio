@@ -1,4 +1,4 @@
-Josh Rhee – Cybersecurity Internship Portfolio (Summer 2025 @ CACI)
+# Josh Rhee – Cybersecurity Internship Portfolio (Summer 2025 @ CACI)
 
 This repo documents the work I did during my internship, focused on building, attacking, and hardening a virtual security lab using Linux, open-source tools, and automation workflows.
 
@@ -42,10 +42,10 @@ All major documentation lives in [`lab-notes/`](./lab-notes/):
 
 ---
 
-Visual examples from the project, located in the [`screenshots/`](./screenshots/) folder:
+## Visual examples from the project, located in the [`screenshots/`](./screenshots/) folder:
 
 - vm-setup/ – network settings, IP assignments, trust anchor output
 - system-hardening/ - Bash script samples. OpenSCAP compliance scan results, firewalld results
-- validation/ – Nessus scan results, Lynis hardening scores  
+- validation/ – Nessus scan results, Lynis hardening scores
 - vuln-testing/ – Nmap results, Metasploit shells, Hydra brute-force output  
 - cicd/ – GitLab pipeline, Black Duck scans, Selenium browser automation  
