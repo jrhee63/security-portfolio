@@ -12,12 +12,12 @@ This repo documents the work I did during my internship, focused on building, at
 - Scripted and automated security controls on Rocky Linux
 - Disabled root SSH, applied firewall rules, enforced password policies, and ran OpenSCAP STIG baselines
 
-## Validation
+## Vulnerability Assesment
 - Ran **Lynis** to audit baseline and post-hardening configurations  
 - Used **Nessus** to externally scan Rocky Linux and VulnHub targets  
 - Cross-referenced manual exploits with scan findings to validate vulnerabilities and confirm remediation
 
-## Offensive Security Testing
+## Pen Testing
 - Attacked VulnHub VMs using Kali and tools like Nmap, Nikto, Burp Suite, Hydra, and Metasploit
 - Documented real-world exploits and compared with Nessus scan results
 
