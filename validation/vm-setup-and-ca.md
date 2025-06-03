@@ -27,7 +27,7 @@ nmcli dev show
 
 ---
 
-### 🔐 Internal Certificate Installation & Trust
+Internal Certificate Installation & Trust
 
 To allow secure HTTPS access inside the VMs (without browser errors), I imported internal root and intermediate certs like:
 
@@ -49,7 +49,7 @@ I also ran `trust list` to make sure the certificates were added correctly.
 
 ---
 
-### 🌐 Proxy & Network Adjustments
+Proxy & Network Adjustments
 
 Because of internal network policies, a lot of HTTPS traffic was being intercepted (MITM-style with trusted proxies). Without importing the right CA, I saw a lot of:
 
@@ -60,7 +60,7 @@ After importing the CA certs, I was able to securely load internal web apps and 
 
 ---
 
-### ✅ End Result
+End Result
 
 - Successfully set up secure browser sessions across VMs
 - Internal CA trust fixed all major SSL-related roadblocks
