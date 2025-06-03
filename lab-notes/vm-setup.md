@@ -1,73 +1,94 @@
 # Virtual Lab Setup & CA Integration – Notes
 
-VM Environment Setup
+## VM Environment Setup
 
 This summer, I built out a virtual lab using VirtualBox to support cybersecurity automation and testing. I set up four main VMs:
 
-- **Kali Linux** – for offensive testing
-- **Rocky Linux** – hardened baseline server
-- **Nessus** – external vulnerability scanner
-- **VulnHub VMs** – targets for testing
+- **Kali Linux** – for offensive testing  
+- **Rocky Linux** – hardened baseline server  
+- **Nessus** – external vulnerability scanner  
+- **VulnHub VMs** – targets for testing  
 
 To simulate an isolated but functional network, I used a mix of:
-- **Internal Network (intnet)** for private communication
-- **NAT** for internet access
 
-Each VM was manually assigned a **static IP** to make connectivity predictable:
-- Kali: 10.0.3.12
-- Nessus: 10.0.3.11
-- Rocky: 10.0.3.10
+- **Internal Network (`intnet`)** for private communication  
+- **NAT** for internet access  
 
-Some commands I used to test:
-- ping 10.0.3.11
-- ip a
-- nmcli dev show
+To avoid network issues with DNS and policies, I manually set static IPs for each VM to keep connections stable and known:
 
+```
+Kali:   10.0.3.12  
+Nessus: 10.0.3.11  
+Rocky:  10.0.3.10  
+```
+### Connectivity Tests
+
+Some basic commands I used to validate connectivity:
+
+- `ip a`
+- `ping 10.0.3.11`
+- `nmcli dev show`
 ---
-
-**Static IP assigned on Rocky Linux**  
-
+**Static IP assignment on Rocky**  
 ![ip a output](../screenshots/vm-setup/ip-a-static.png)
 
-**Ping from Rocky Linux to Nessus VM**  
-
+**Ping from Rocky to Nessus**  
 ![ping test](../screenshots/vm-setup/ping-test.png)
 
 ---
 
-# Proxy & Network Adjustments
+## Proxy & Network Adjustments
 
-Because of internal network policies, a lot of HTTPS traffic was being intercepted. Without importing the right CA, I saw a lot of:
+Because of internal policies, HTTPS traffic was intercepted, triggering errors like:
 
-- ERR_CERT_AUTHORITY_INVALID
-- SSL_ERROR_BAD_CERT_DOMAIN
+- `ERR_CERT_AUTHORITY_INVALID`  
+- `SSL_ERROR_BAD_CERT_DOMAIN`  
 
-**Internal Certificate Installation & Trust**
+### Installing Internal CA Certificates
 
-To allow secure HTTPS access inside the VMs (without browser errors), I imported internal root and intermediate certs like:
+To fix this, I exported and installed the root and intermediate CAs:
 
-- CACIROOTCA-S2.pem
-- CACIISSCA01A.pem
+- `CACIROOTCA-S2.pem`  
+- `CACIISSCA01A.pem`  
 
-On Linux, I used the system’s trust store with:
+**Linux trust store (system-wide):**
 
-- sudo trust anchor CACIROOTCA-S2.pem
-- sudo update-ca-trust extract
+```bash
+sudo trust anchor CACIROOTCA-S2.pem
+sudo update-ca-trust extract
+```
+Adds the certificate to the system trust store to enable commands like `curl`, `dnf`, and others.
 
-For browsers:
-- **Chrome**: Used certutil with ~/.pki/nssdb
-- **Firefox**: Picked up from system store or imported manually
+**Browser trust setup:**
 
-I also ran `trust list` to make sure the certificates were added correctly.
+- **Chrome:** `certutil` with `~/.pki/nssdb`
+- **Firefox:** Used system trust or manual import
 
+Adds the cert to local databases so it trusts internal sites.
+
+To verify success:
+
+```bash
+trust list | grep "CACI"
+```
+
+**Screenshot – CA verification using trust list**  
 ![trust list output](../screenshots/vm-setup/trustlistCA.png)
 
-After importing the CA certs, I was able to securely load internal web apps and Nessus dashboards inside both Firefox and Chrome.
+After importing, I could securely access internal tools and dashboards inside both **Firefox** and **Chrome**.
 
 ---
 
-# End Result
+## Snapshot Management
 
-- Successfully set up secure browser sessions across VMs
-- Internal CA trust fixed all major SSL-related roadblocks
-- Enabled automated scanning, exploitation, and reporting without certificate errors blocking access 
+- Took initial VM snapshots once lab was configured 
+- Ensured revert functionality worked 
+
+---
+
+## End Result
+
+- Secure browser sessions with trusted internal CA  
+- SSL errors fully resolved across all VMs  
+- Automation and scanning unblocked (Nessus, Chrome dashboards)  
+- Snapshots enabled safe testing and rollback 
