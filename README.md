@@ -1,4 +1,4 @@
-# Josh Rhee – Cybersecurity Internship Portfolio (Summer 2025 @ CACI)
+# Josh Rhee – Cyber Engineering & DevSecOps Portfolio (Summer 2025 @ CACI)
 
 This repo documents the work I did during my internship, focused on building, attacking, and hardening a virtual security lab using Linux, open-source tools, and automation workflows.
 
