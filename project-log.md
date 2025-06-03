@@ -1,4 +1,4 @@
-# Development Log – Summer 2025 @ CACI
+# Project Log – Summer 2025 @ CACI
 
 Weekly breakdown of what I worked on, learned, and troubleshooted.
 
