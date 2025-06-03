@@ -1,6 +1,6 @@
 # Virtual Lab Setup & CA Integration – Notes
 
-### 🧱 VM Environment Setup
+VM Environment Setup
 
 This summer, I built out a virtual lab using VirtualBox to support cybersecurity automation and testing. I set up four main VMs:
 
