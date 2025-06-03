@@ -11,14 +11,14 @@ This summer, I built out a virtual lab using VirtualBox to support cybersecurity
 
 To simulate an isolated but functional network, I used a mix of:
 - **Internal Network (intnet)** for private communication
-- **NAT** or **Bridged Adapter** for internet access
+- **NAT** for internet access
 
 Each VM was manually assigned a **static IP** to make connectivity predictable:
 - Kali: `10.0.3.12`
 - Nessus: `10.0.3.11`
 - Rocky: `10.0.3.10`
 
-Basic commands I used to verify everything worked:
+Some commands I used to test:
 ```bash
 ping 10.0.3.11
 ip a
