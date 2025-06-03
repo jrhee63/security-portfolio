@@ -25,7 +25,24 @@ Some commands I used to test:
 
 ---
 
-Internal Certificate Installation & Trust
+**Static IP assigned on Rocky Linux**  
+
+![ip a output](../screenshots/vm-setup/ip-a-static.png)
+
+**Ping from Rocky Linux to Nessus VM**  
+
+![ping test](../screenshots/vm-setup/ping-test.png)
+
+---
+
+# Proxy & Network Adjustments
+
+Because of internal network policies, a lot of HTTPS traffic was being intercepted. Without importing the right CA, I saw a lot of:
+
+- ERR_CERT_AUTHORITY_INVALID
+- SSL_ERROR_BAD_CERT_DOMAIN
+
+**Internal Certificate Installation & Trust**
 
 To allow secure HTTPS access inside the VMs (without browser errors), I imported internal root and intermediate certs like:
 
@@ -37,27 +54,19 @@ On Linux, I used the system’s trust store with:
 - sudo trust anchor CACIROOTCA-S2.pem
 - sudo update-ca-trust extract
 
-
 For browsers:
 - **Chrome**: Used certutil with ~/.pki/nssdb
 - **Firefox**: Picked up from system store or imported manually
 
-I also ran trust list to make sure the certificates were added correctly.
+I also ran `trust list` to make sure the certificates were added correctly.
 
----
-
-Proxy & Network Adjustments
-
-Because of internal network policies, a lot of HTTPS traffic was being intercepted (MITM-style with trusted proxies). Without importing the right CA, I saw a lot of:
-
-- ERR_CERT_AUTHORITY_INVALID
-- SSL_ERROR_BAD_CERT_DOMAIN
+![trust list output](../screenshots/vm-setup/trustlistCA.png)
 
 After importing the CA certs, I was able to securely load internal web apps and Nessus dashboards inside both Firefox and Chrome.
 
 ---
 
-End Result
+# End Result
 
 - Successfully set up secure browser sessions across VMs
 - Internal CA trust fixed all major SSL-related roadblocks
