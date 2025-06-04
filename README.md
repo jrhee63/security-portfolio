@@ -37,8 +37,8 @@ All major documentation lives in [`lab-notes/`](./lab-notes/):
 
 ---
 
-## Internship Log
-[`Check out what I did week by week →`](./internship-log.md)
+## Project Log
+[`Check out what I did week by week →`](./project-log.md)
 
 ---
 
