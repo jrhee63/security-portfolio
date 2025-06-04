@@ -43,10 +43,10 @@ All major documentation lives in [`lab-notes/`](./lab-notes/):
 ---
 
 ## Screenshots
-Visual examples from the project, located in the [`screenshots/`](./lab-notes/screenshots/) folder:
+Visual examples from the project, embedded within write-ups and located in the [`screenshots/`](./lab-notes/screenshots/) folder:
 
-- vm-setup/ – network settings, IP assignments, trust anchor output
-- system-hardening/ - Bash script samples. OpenSCAP compliance scan results, firewalld results
-- validation/ – Nessus scan results, Lynis hardening scores
-- vuln-testing/ – Nmap results, Metasploit shells, Hydra brute-force output  
-- cicd/ – GitLab pipeline, Black Duck scans, Selenium browser automation  
+- [`vm-setup/`](./lab-notes/screenshots/vm-setup/) – network settings, IP assignments, trust anchor output  
+- [`system-hardening/`](./lab-notes/screenshots/system-hardening/) – Bash script samples, OpenSCAP compliance scan results, firewalld results  
+- [`validation/`](./lab-notes/screenshots/validation/) – Nessus scan results, Lynis hardening scores  
+- [`vuln-testing/`](./lab-notes/screenshots/vuln-testing/) – Nmap results, Metasploit shells, Hydra brute-force output  
+- [`cicd/`](./lab-notes/screenshots/cicd/) – GitLab pipeline, Black Duck scans, Selenium browser automation
