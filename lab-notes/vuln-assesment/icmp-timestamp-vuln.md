@@ -33,7 +33,7 @@ To validate the fix externally, I scanned the target using Nmap:
 nmap -sV -Pn 10.0.3.10
 ```
 
-Only SSH (port 22) remained open.
+Only SSH (port 22) remained open, which is what we wanted.
 
 ![Nmap after hardening](../screenshots/vuln-assessment/nmap-after-hardening.png)
 
