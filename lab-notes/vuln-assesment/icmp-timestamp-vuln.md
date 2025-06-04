@@ -1,73 +1,19 @@
-## ICMP Timestamp Request Vulnerability
+## ICMP Timestamp Vulnerability – Discovery, Hardening, and Validation
 
-Tool Used: Nessus  
-Target: Rocky Linux (10.0.3.10)  
-Scan Date: June 4, 2025  
-Severity: Low
+### Tool: Nessus  
+### Target: Rocky Linux (10.0.3.10)
 
-Nessus initially reported that the Rocky Linux VM was responding to ICMP timestamp requests, potentially allowing a remote attacker to infer system time and bypass time-based authentication.
+Nessus reported that the Rocky VM responded to ICMP timestamp requests, exposing system time and increasing the risk of time-based attacks.
 
-Screenshot: `nessus-scan-icmp-timestamp.png`
+![Nessus scan](../screenshots/vuln-assessment/nessus-scan-icmp-timestamp.png) ![Pre-scan chart](../screenshots/vuln-assessment/nessus-vchart-pre-scan.png)
 
-Open services were reviewed on the system and unnecessary ones were removed.
-
-Screenshot: `rocky-open-services-before.png`
-
-ICMP timestamp requests and replies were blocked using firewall rules. These changes were then verified externally via:
-
-```bash
-nmap -sV -Pn 10.0.3.10
-```
-
-Screenshot: `nmap-after-hardening.png`  
-Only SSH remained accessible from the network.
-
-To confirm that Nessus no longer detected the vulnerability, I performed a re-scan using the same scan policy.
-
-Screenshot: `nessus-rescan-clean.png`  
-The ICMP timestamp request vulnerability was no longer reported.
-project-log.md (updated)
-markdown
-Copy
-Edit
-### June 4, 2025 – Nessus Discovery and Hardening Validation
-
-- Ran Nessus scan from Nessus VM to Rocky Linux target (10.0.3.10)
-- Discovered ICMP timestamp response vulnerability
-- Screenshot: `nessus-scan-icmp-timestamp.png`
-
-- Reviewed public zone services:
-```bash
-sudo firewall-cmd --zone=public --list-services
-```
-- Screenshot: `rocky-open-services-before.png`
-
-- Removed `cockpit` and `dhcpv6-client`
-- Blocked ICMP timestamp-request and reply traffic using `firewall-cmd`
-- Screenshot: `rocky-blocked-icmp-firewall.png`
-
-- Ran `nmap -sV -Pn` from Kali to confirm only SSH (port 22) was reachable
-- Screenshot: `nmap-after-hardening.png`
-
-- Re-scanned target in Nessus to validate fix
-- Screenshot: `nessus-rescan-clean.png`
-- Nessus confirmed the vulnerability was no longer present
-system-hardening.md (unchanged, just reference result)
-markdown
-Copy
-Edit
-### Removing Unnecessary Services
-
-Checked exposed services using:
+To minimize the attack surface, I reviewed open firewall services:
 
 ```bash
 sudo firewall-cmd --zone=public --list-services
 ```
 
-Screenshot: `rocky-open-services-before.png`  
-Found `cockpit` and `dhcpv6-client` enabled.
-
-Removed both:
+Unnecessary services like `cockpit` and `dhcpv6-client` were removed:
 
 ```bash
 sudo firewall-cmd --permanent --remove-service=cockpit
@@ -75,11 +21,9 @@ sudo firewall-cmd --permanent --remove-service=dhcpv6-client
 sudo firewall-cmd --reload
 ```
 
----
+![Open services before](../screenshots/vuln-assessment/rocky-open-services-before.png)
 
-### Blocking ICMP Timestamp Requests
-
-Blocked ICMP timestamp requests and replies:
+ICMP timestamp requests and replies were blocked via firewall:
 
 ```bash
 sudo firewall-cmd --permanent --add-icmp-block=timestamp-request
@@ -87,24 +31,18 @@ sudo firewall-cmd --permanent --add-icmp-block=timestamp-reply
 sudo firewall-cmd --reload
 ```
 
-Screenshot: `rocky-blocked-icmp-firewall.png`
+![Firewall ICMP blocks](../screenshots/system-hardening/rocky-blocked-icmp-firewall.png)
 
----
-
-### External Validation with Nmap
-
-Used `nmap` to confirm that only SSH was accessible:
+To validate the fix externally, I scanned the target using Nmap:
 
 ```bash
 nmap -sV -Pn 10.0.3.10
 ```
 
-Screenshot: `nmap-after-hardening.png`
+Only SSH (port 22) remained open.
 
----
+![Nmap after hardening](../screenshots/vuln-assessment/nmap-after-hardening.png)
 
-### Final Validation via Nessus Re-scan
+A final Nessus re-scan confirmed that the ICMP timestamp vulnerability was resolved.
 
-Re-ran Nessus scan to verify vulnerability was no longer detected.
-
-Screenshot: `nessus-rescan-clean.png`
+![Post-scan chart](../screenshots/vuln-assessment/nessus-vchart-post-scan.png)
