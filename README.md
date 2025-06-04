@@ -43,7 +43,7 @@ All major documentation lives in [`lab-notes/`](./lab-notes/):
 ---
 
 ## Screenshots
-Visual examples from the project, located in the [`screenshots/`](./screenshots/) folder:
+Visual examples from the project, located in the [`screenshots/`](./lab-notes/screenshots/) folder:
 
 - vm-setup/ – network settings, IP assignments, trust anchor output
 - system-hardening/ - Bash script samples. OpenSCAP compliance scan results, firewalld results
