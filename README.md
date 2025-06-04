@@ -30,10 +30,10 @@ This repo documents the work I did during my internship, focused on building, at
 ## Lab Notes
 All major documentation lives in [`lab-notes/`](./lab-notes/):
 - [`vm-setup.md`](./lab-notes/vm-setup.md) – how I configured my virtual environment
-- `system-hardening.md` – notes on hardening Rocky Linux
-- `vuln-testing.md` – attack writeups and tool use
-- `validation.md` – scanning and audit validation
-- `cicd-compliance.md` – automation + compliance tracking
+- [`system-hardening.md`](./lab-notes/system-hardening.md) – notes on hardening Rocky Linux
+- [`vuln-assessment.md`](./lab-notes/vuln-assesment) – scanning and audit validation
+- [`pen-testing.md`](./lab-notes/pen-testing) – attack writeups and tool use
+- [`cicd-compliance.md`](./lab-notes/cicd-compliance) – automation + compliance tracking
 
 ---
 
