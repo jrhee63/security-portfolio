@@ -25,12 +25,6 @@ sudo firewall-cmd --reload
 
 ICMP timestamp requests and replies were blocked via firewall:
 
-```bash
-sudo firewall-cmd --permanent --add-icmp-block=timestamp-request
-sudo firewall-cmd --permanent --add-icmp-block=timestamp-reply
-sudo firewall-cmd --reload
-```
-
 ![Firewall ICMP blocks](../screenshots/system-hardening/rocky-blocked-icmp-firewall.png)
 
 To validate the fix externally, I scanned the target using Nmap:
