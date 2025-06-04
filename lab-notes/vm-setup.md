@@ -2,7 +2,7 @@
 
 ## VM Environment Setup
 
-This summer, I built out a virtual lab using VirtualBox to support cybersecurity automation and testing. I set up four main VMs:
+ I built out a virtual lab using VirtualBox to support cybersecurity automation and testing. I set up four main VMs:
 
 - **Kali Linux** – for offensive testing  
 - **Rocky Linux** – hardened baseline server  
