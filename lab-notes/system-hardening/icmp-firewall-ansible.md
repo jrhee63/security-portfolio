@@ -53,7 +53,7 @@ This playbook installs and enables firewalld, blocks ICMP type 13 and 14 packets
 ```
 
 Playbook code:  
-![Playbook Code](../screenshots/icmp-firewall/playbook-code.png)
+![Playbook Code](../screenshots/system-hardening/icmp-ansible/playbook-code.png)
 
 ---
 
@@ -66,7 +66,7 @@ ansible-playbook icmp_fix.yml --ask-become-pass
 ```
 
 Successful playbook execution:  
-![Ansible Run Success](../screenshots/icmp-firewall/ansible-run-success.png)
+![Ansible Run Success](../screenshots/system-hardening/icmp-ansible/ansible-run-success.png)
 
 ---
 
@@ -86,27 +86,20 @@ ipv4 filter INPUT 0 --proto icmp --icmp-type 14 -j DROP
 ```
 
 Confirmed firewall rules:  
-![Firewall Rules Confirmed](../screenshots/icmp-firewall/firewall-rules-confirmed.png)
+![Firewall Rules Confirmed](../screenshots/system-hardening/icmp-ansible/firewall-rules-confirmed.png)
 
 ### Nessus Scan Results
 
 Before applying the Ansible script, a Nessus scan identified the Rocky Linux VM as vulnerable to ICMP timestamp requests. This was flagged as a low-severity issue related to system fingerprinting.
 
-Nessus scan result before the fix:  
-![Nessus Before](../screenshots/icmp-firewall/nessus-before.png)
-
 After applying the firewall rules using Ansible and rescanning with Nessus, the ICMP Timestamp vulnerability no longer appeared in the report.
-
-Nessus scan result after the fix:  
-![Nessus After](../screenshots/icmp-firewall/nessus-after.png)
 
 ---
 
 ## What I Learned
 
-- How to write and run a structured Ansible playbook for local system changes  
-- How to apply ICMP-specific firewall rules using `firewalld --direct`  
-- How to use Nessus as a before-and-after validator for vulnerability mitigation  
-- Why blocking ICMP timestamp packets improves security posture against recon attacks
+- How to write and run an Ansible playbook for local system changes  
+- How to apply ICMP-specific firewall rules using `firewalld --direct`   
+- Why blocking ICMP timestamp packets improves security against recon attacks
 
 ---
