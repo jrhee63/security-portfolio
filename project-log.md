@@ -22,16 +22,17 @@ Weekly breakdown of what I worked on, learned, and troubleshooted.
 
 ---
 
-## Week 2 (MM/DD – MM/DD)
+## Sprint 2 (6/4 – 6/17)
 
 ### What I Did
-
+- Manually mitigated ICMP Timestamp vulnerability reported by Nessus using firewalld.
+- Wrote and tested an Ansible playbook to automate the same firewall fix.
 
 ### Tools Used
-
+- Nessus, Ansible, Firewalld
 
 ### Notes & Challenges
-
+- firewalld rich rules did not support icmp_type; had to switch to direct iptables rules.
 
 ---
 
